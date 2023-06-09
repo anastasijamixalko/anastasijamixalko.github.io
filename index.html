@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="storage/img/fav.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>E-Books</title>
+</head>
+
+<header>
+    <div class="header_container">
+        <div class="header_content">
+            <div class="header_logo">
+                <a href="index.html" class="header_logo"><img class="header_logo" src="storage/img/main_logo.png" alt="logo"></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+    <div class="body_container">
+        <div class="body_welcome">
+            <h1>Welcome to our e-book website!</h1>
+            <h1 class="body_comment">Please, choose genre below:</h1>
+        </div>
+        <div class="body_content">
+            <!-- maket genre -->
+            <div class="genres">
+            <div class="body_genre-card">
+                <img src="storage/img/genre_classic.png" alt="classic" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+            <div class="body_genre-card">
+                <img src="storage/img/genre_fantasy.png" alt="fantasy" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+            <div class="body_genre-card">
+                <img src="storage/img/genre_romance.png" alt="romance" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+
+            <div class="body_genre-card">
+                <img src="storage/img/genre_humor.png" alt="humor" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+            <div class="body_genre-card">
+                <img src="storage/img/genre_cyberpunk.png" alt="cyberpunk" class="genre-image"
+                    onclick="getBooksByGenre(this.alt)">
+            </div>
+            <div class="body_genre-card">
+                <img src="storage/img/genre_science.png" alt="science" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+
+            <div class="body_genre-card">
+                <img src="storage/img/genre_mystery.png" alt="mystery" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+            <div class="body_genre-card">
+                <img src="storage/img/genre_horror.png" alt="horror" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+            <div class="body_genre-card">
+                <img src="storage/img/genre_crime.png" alt="crime" class="genre-image" onclick="getBooksByGenre(this.alt)">
+            </div>
+        </div>
+            <!-- maket genre -->
+
+            <!-- maket book -->
+            <div class="books">
+                    
+            </div>
+            <!-- maket book -->
+
+            
+        </div>
+    </div>
+    <script src="./javascript/script.js"></script>
+</body>
+
+<footer>
+    <div class="footer_container">
+        <div class="footer_content">
+            <div class="footer_logo"></div>
+            <div class="footer_info"></div>
+        </div>
+    </div>
+</footer>
+
+</html>
