@@ -11,6 +11,7 @@ var bodySearch = document.querySelectorAll('.body_search');
 var booksContainer = document.querySelector('.books');
 var bodyContent = document.querySelector('.body_content');
 var searchForm = document.querySelector(".search");
+var scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
 var searchTitle;
 var backButton;
@@ -215,6 +216,7 @@ function showBookDetails(book) {
     clearGenres(clearGenresTitle);
     fetchData(API_URL);
     createBooksCards(data);
+    startIndex = 0;
   });
   bookDetailsContainer.appendChild(bookImage);
   bookDetailsContainer.appendChild(bookTitle);
@@ -249,4 +251,19 @@ searchForm.addEventListener("submit", function (event) {
   clearGenres(clearGenresTitle);
   fetchData(API_URL);
   createBooksCards(data);
+});
+
+window.addEventListener("scroll", function() {
+  if (window.pageYOffset > 300) {
+    scrollToTopBtn.classList.add("show");
+  } else {
+    scrollToTopBtn.classList.remove("show");
+  }
+});
+
+scrollToTopBtn.addEventListener("click", function() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
