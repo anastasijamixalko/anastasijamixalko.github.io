@@ -76,6 +76,7 @@ footer {
     height: 100%;
     box-shadow: -5px 0px 10px -5px black, 5px 0px 10px -5px black;
     min-height: 100vh;
+    
 }
 
 .body_welcome {
@@ -86,6 +87,7 @@ footer {
     width: 100%;
     margin: 0 10px;
     flex-grow: 1;
+    
 }
 
 .body_genre-card {
@@ -118,6 +120,17 @@ h1 {
 .body_comment {
     padding-top: 20px;
     font-size: 40px;
+}
+
+.body_text {
+    padding-top: 20px;
+    font-size: 40px;
+    background: linear-gradient(45deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+    width: 70%;
+    margin: 0 auto;
 }
 
 .books {
@@ -243,7 +256,7 @@ h1 {
     cursor: pointer;
 }
 
-.body_genre-card, .body_comment, h1{
+.body_genre-card, .body_comment, h1, .body_text{
     animation-name: genre-appear;
     animation-duration: 0.5s;
     animation-timing-function: ease;
@@ -297,3 +310,46 @@ h1 {
     animation-delay: 0.8s;
 }
 */
+
+form {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+  }
+  input {
+    width: 100%;
+    height: 60px;
+    padding-left: 10px;
+    border: 2px solid  rgb(148, 1, 45);
+    border-radius: 5px;
+    outline: none;
+    background: #F9F0DA;
+    
+    font-size: 16px;
+  }
+  button {
+    position: absolute; 
+    top: 0;
+    right: 0px;
+    width: 60px;
+    height: 60px;
+    border: none;
+    background: rgb(148, 1, 45);
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+  button:before {
+    
+    content: "\f002";
+    font-size: 20px;
+    color: #F9F0DA;
+  }
+  
+  .search_form{
+    padding: 30px;
+  }
+
+  .fa-search:before{
+    font-family: FontAwesome;
+    content: "\f002"
+  }

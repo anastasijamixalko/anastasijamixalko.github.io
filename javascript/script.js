@@ -4,19 +4,41 @@ var results = 20;
 var startIndex = 0;
 var API_URL = `https://www.googleapis.com/books/v1/volumes?q=subject:${API_GENRE}&startIndex=${startIndex}&maxResults=${results}&key=${API_KEY}`;
 var genresElements = document.querySelectorAll('.genres');
+var searchInput = document.querySelector('.search_input');
 var bodyComment = document.querySelector('.body_comment');
+var bodyText = document.querySelectorAll('.body_text');
+var bodySearch = document.querySelectorAll('.body_search');
 var booksContainer = document.querySelector('.books');
 var bodyContent = document.querySelector('.body_content');
+var searchForm = document.querySelector(".search");
+
+var searchTitle;
 var backButton;
 var moreButton;
 var data;
 var totalItems;
+var lastPicked;
+var clearGenresTitle;
 
 function getBooksByGenre(genre) {
   API_GENRE = genre;
   API_URL = `https://www.googleapis.com/books/v1/volumes?q=subject:${API_GENRE}&startIndex=${startIndex}&maxResults=${results}&key=${API_KEY}`;
   fetchData(API_URL);
-  clearGenres(`Here are books of the ${API_GENRE} genre:`);
+  lastPicked = 'byGenre';
+  clearGenresTitle = `Here are books of the ${API_GENRE} genre:`;
+  clearGenres(clearGenresTitle);
+  clearBodyText();
+}
+
+function clearBodyText() {
+  for (var i = 0; i < bodySearch.length; i++) {
+    var bodySearchElement = bodySearch[i];
+    bodySearchElement.parentNode.removeChild(bodySearchElement);
+  }
+  for (var i = 0; i < bodyText.length; i++) {
+    var bodyTextElement = bodyText[i];
+    bodyTextElement.parentNode.removeChild(bodyTextElement);
+  }
 }
 
 async function fetchData(url) {
@@ -28,7 +50,7 @@ async function fetchData(url) {
     data = await response.json();
     totalItems = data.totalItems;
     console.log(data);
-    clearBooks(`Here are books of the ${API_GENRE} genre:`);
+    clearBooks(clearGenresTitle);
     createBooksCards(data);
   } catch (error) {
     console.error('Error:', error);
@@ -114,8 +136,14 @@ function createNavigationButtons() {
   moreButton.addEventListener('click', function () {
     if (startIndex + 20 < totalItems) {
       startIndex = startIndex + 20;
+      if (lastPicked === 'byGenre'){
       API_URL = `https://www.googleapis.com/books/v1/volumes?q=subject:${API_GENRE}&startIndex=${startIndex}&maxResults=${results}&key=${API_KEY}`;
+
+      } else if (lastPicked ==='byTitle'){
+      API_URL=`https://www.googleapis.com/books/v1/volumes?q=title:${searchTitle}&startIndex=${startIndex}&maxResults=${results}&key=${API_KEY}`;
+      }
       console.log(API_URL);
+      console.log(startIndex);
       loadMoreBooks(API_URL)
     } else {
       if (moreButton) {
@@ -184,7 +212,9 @@ function showBookDetails(book) {
   backButton.textContent = 'Back';
   backButton.addEventListener('click', function () {
     startIndex = 0;
-    getBooksByGenre(API_GENRE);
+    clearGenres(clearGenresTitle);
+    fetchData(API_URL);
+    createBooksCards(data);
   });
   bookDetailsContainer.appendChild(bookImage);
   bookDetailsContainer.appendChild(bookTitle);
@@ -208,3 +238,15 @@ function clearGenres(comment) {
     bodyComment.textContent = comment;
   }
 }
+
+searchForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  lastPicked = 'byTitle';
+  searchTitle = searchInput.value;
+  API_URL = `https://www.googleapis.com/books/v1/volumes?q=title:${searchTitle}&startIndex=${startIndex}&maxResults=${results}&key=${API_KEY}`;
+  clearBodyText();
+  clearGenresTitle = `Here are results for your request: ${searchTitle}`;
+  clearGenres(clearGenresTitle);
+  fetchData(API_URL);
+  createBooksCards(data);
+});
